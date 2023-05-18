@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/template}">
+    <th:block layout:fragment="content">
+
+    <div id="main" th:with="pglink=${(#strings.isEmpty(param.fkey)) ? '/borad/find?cpg=' : '/board/find?ftype=' + param.ftype + '&fkey=' + param.fkey + '&cpg='}">
+        <div class="mt-5">
+            <i class="fa-solid fa-pen-to-square fa-2xl"> 게시판 </i>
+            <hr>
+        </div>
+
+        <div class="row mt-5">
+            <div class="offset-1 col-7">
+                <div class="row">
+                    <div class="col-2">
+                        <select class="form-select" id="findtype">
+                            <option value="title">제목</option>
+                            <option value="titcont">제목+내용</option>
+                            <option value="content">내용</option>
+                            <option value="userid">작성자</option>
+                        </select>
+                    </div>
+                    <th:block th:if="${not #strings.isEmpty(session.UID)}">
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="findkey" th:value="${param.fkey}" />
+                        </div>
+                        <div class="col-3 text-end">
+                            <button type="button" class="btn btn-light" id="findbtn">
+                                <i class="fa-solid fa-magnifying-glass"> </i> 검색하기</button>
+                        </div>
+                    </th:block>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="col-3 text-end">
+
+                <button type="button" class="btn btn-light" id="newbtn">
+                    <i class="fa fa-plus-circle"> </i>새글쓰기</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="offset-1 col-10">
+                <table class="table table-striped tbborder">
+                    <thead class="thbg">
+                    <tr>
+                        <th style="width: 7%">번호</th>
+                        <th>제목</th>
+                        <th style="width: 13%">작성자</th>
+                        <th style="width: 13%">작성일</th>
+                        <th style="width: 7%">추천</th>
+                        <th style="width: 7%">조회</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>공지</th>
+                        <th><span class="badge text-bg-danger">Hot</span>"대체공휴일로 '사흘' 쉰다는데 왜 3일?"…문해력 논란</th>
+                        <th>운영자</th>
+                        <th>2023-05-04</th>
+                        <th>350</th>
+                        <th>15000</th>
+                    </tr>
+                        <tr th:each="bd : ${bdlist}">
+                            <td th:text="${bd.bno}">&nbsp;</td>
+                            <td><a th:href="|/board/view?bno=${bd.bno}|" th:text="${bd.title}">&nbsp;</a></td>
+                            <td th:text="${bd.userid}">&nbsp;</td>
+                            <td th:text="${#strings.substring(bd.regdate,0,10)}">&nbsp;</td>
+                            <td th:text="${bd.thumbs}">&nbsp;</td>
+                            <td th:text="${bd.views}">&nbsp;</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <th:block th:with="pglink=${'/board/list?cpg='}">
+            <div class="row">
+                <div class="offset-2 col-8 text-end">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+
+                            <th:block th:if="${cpg gt 1}">
+                                <li class="page-item"><a class="page-link" th:href="|${pglink}1|">처음</a></li>
+                            </th:block>
+
+                            <li th:class="${(cpg - 1 gt 0) ? 'page-item' : 'page-item disabled'}">
+                            <a class="page-link" th:href="|${pglink}${cpg - 1}|">이전</a></li>
+
+                            <th:block th:each="i : ${#numbers.sequence(stpg, stpg+9)}">
+                                <th:block th:if="${i le cntpg}">
+                                    <li th:class="${(cpg eq i) ? 'page-item active' : 'page-item'}">
+                                        <a class="page-link" th:href="|${pglink}${i}|" th:text="${i}"></a>
+                                    </li>
+                                </th:block>
+                            </th:block>
+
+                            <li th:class="${(cpg + 1 lt cntpg) ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link" th:href="|${pglink}${cpg+1}|">다음</a></li>
+
+                            <th:block th:if="${cpg lt cntpg}">
+                                <li class="page-item"><a class="page-link" th:href="|${pglink}${cntpg}|">끝</a></li>
+                            </th:block>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </th:block>
+    </div>
+        <script src="/assets/js/board.js"></script>
+    </th:block>
+</html>
