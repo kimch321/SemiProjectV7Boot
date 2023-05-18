@@ -1,8 +1,6 @@
 package kimch321.spring.semiprojectv7.dao;
 
 import kimch321.spring.semiprojectv7.model.Board;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,39 +8,33 @@ import java.util.Map;
 
 @Repository("bddao")
 public class BoardDAOImpl implements BoardDAO{
-
-    @Autowired
-    SqlSession sqlSession;
-
     @Override
-    public List<Board> selectBoard(int stbno) {
-        return sqlSession.selectList("board.selectBoard", stbno);
+    public List<Board> selectBoard(int strbno) {
+        return null;
     }
 
     @Override
     public List<Board> selectBoard(Map<String, Object> params) {
-        return sqlSession.selectList("board.selectFindBoard", params);
+        return null;
     }
 
     @Override
     public Board selectOneBoard(String bno) {
-
-        sqlSession.update("board.countViewBoard", bno);
-        return sqlSession.selectOne("board.selectOneBoard", bno);
+        return null;
     }
 
     @Override
     public int countBoard() {
-        return sqlSession.selectOne("board.countBoard");
+        return 0;
     }
 
     @Override
     public int countBoard(Map<String, Object> params) {
-        return sqlSession.selectOne("board.countFindBoard", params);
+        return 0;
     }
 
     @Override
     public int insertBoard(Board bd) {
-        return sqlSession.insert("board.insertBoard", bd);
+        return 0;
     }
 }
