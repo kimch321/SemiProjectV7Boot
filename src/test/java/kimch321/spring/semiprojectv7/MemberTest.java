@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 @SpringBootTest
 public class MemberTest {
 
@@ -47,5 +50,15 @@ public class MemberTest {
         m.setMbno(6L);
 
         memberRepository.delete(m);
+    }
+
+    @Test
+    @DisplayName("member login")
+    public void loginMember() {
+        Member m = new Member();
+        m.setUserid("abc123");
+        m.setPasswd("abc123");
+
+        assertNotNull(memberRepository.findByUseridAndPasswd(m.getUserid(),m.getPasswd()));
     }
 }
