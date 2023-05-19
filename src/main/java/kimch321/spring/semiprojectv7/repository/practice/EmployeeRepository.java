@@ -1,10 +1,8 @@
 package kimch321.spring.semiprojectv7.repository.practice;
 
-import kimch321.spring.semiprojectv7.model.Zipcode;
 import kimch321.spring.semiprojectv7.model.practice.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -32,7 +30,20 @@ public interface EmployeeRepository extends JpaRepository<Employees, Long> {
     List<Employees> findAllByOrderByDeptidDesc();
 
     // 에러
-    /*@Query("select count(distinct jobid) from Employees ")*//*
-    String countDistinctByJobid();*/
+    // 메서드가 보이드이다.
+    @Query("select count(distinct jobid) from Employees ")
+    int countDistinctByJobid();
+
+    // 그룹핑: 직책별 최대, 최소, 평균 연봉, 직책수 조회
+    @Query("select jobid, max(sal), min(sal), avg(sal), count(jobid) from Employees group by jobid")
+    List<Object[]> findEmployees2();
+
+    // 서브쿼리1: 평균연봉보다 작게 받는 사원들 조회
+    @Query("select fname, sal from Employees where sal < (select avg(sal) from Employees)")
+    List<Object[]> findEmployees3();
+
+    // join: 부서번호가 60인 사원들의 이름, 직책, 부서명 조회
+    @Query("select e.fname, e.jobid, d.dname from Employees e inner join Departments d on e.deptid=d.deptid where e.deptid = 60")
+    List<Object[]> findEmployees4();
 
 }

@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class EmployeeTest {
 
@@ -60,11 +62,38 @@ public class EmployeeTest {
             System.out.println(emp);
     }
 
-    /*@Test
+    @Test
     @DisplayName("employee")
     public void countJobId() {
-        String cntjobid = employeeRepository.countDistinctByJobid();
+        int cnt = employeeRepository.countDistinctByJobid();
 
-        System.out.println(cntjobid);
-    }*/
+        assertEquals(19, cnt);
+    }
+
+    @Test
+    @DisplayName("grouping1")
+    public void findEmployees1() {
+        List<Object[]> emps = employeeRepository.findEmployees2();
+
+        for(Object[] emp: emps)
+            System.out.println(emp[0] + "/" + emp[1] + "/" + emp[2] + "/" + emp[3] + "/" + emp[4]);
+    }
+
+    @Test
+    @DisplayName("grouping2")
+    public void findEmployees2() {
+        List<Object[]> emps = employeeRepository.findEmployees3();
+
+        for(Object[] emp: emps)
+            System.out.println(emp[0] + "/" + emp[1]);
+    }
+
+    @Test
+    @DisplayName("grouping3")
+    public void findEmployees3() {
+        List<Object[]> emps = employeeRepository.findEmployees4();
+
+        for(Object[] emp: emps)
+            System.out.println(emp[0] + "/" + emp[1] + "/" + emp[2]);
+    }
 }
