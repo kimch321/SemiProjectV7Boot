@@ -61,7 +61,7 @@ public class EmployeeTest {
     }
 
     /*@Test
-    @DisplayName("employee6")
+    @DisplayName("employee")
     public void countJobId() {
         String cntjobid = employeeRepository.countDistinctByJobid();
 
