@@ -3,6 +3,8 @@ package kimch321.spring.semiprojectv7.dao;
 import kimch321.spring.semiprojectv7.model.Board;
 import kimch321.spring.semiprojectv7.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,8 +17,10 @@ public class BoardDAOImpl implements BoardDAO{
     BoardRepository boardRepository;
 
     @Override
-    public List<Board> selectBoard(int strbno) {
-        return boardRepository.findAll();
+    public List<Board> selectBoard(int cpage) {
+        Pageable paging = PageRequest.of(cpage, 25);
+
+        return boardRepository.findAll(paging).getContent();
     }
 
     @Override
@@ -26,6 +30,7 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public Board selectOneBoard(int bno) {
+        boardRepository.countViewBoard((long) bno);
         return boardRepository.findById((long) bno).get();
     }
 

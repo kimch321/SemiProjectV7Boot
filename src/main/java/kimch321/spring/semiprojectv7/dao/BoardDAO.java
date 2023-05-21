@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface BoardDAO {
 
-    List<Board> selectBoard(int strbno);
+    List<Board> selectBoard(int cpage);
     List<Board> selectBoard(Map<String, Object> params);
     Board selectOneBoard(int bno);
     int countBoard();
