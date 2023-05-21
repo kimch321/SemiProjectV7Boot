@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService{
         /*// 1 페이지라면 limit 0,25 2 페이지라면 limit 25,25...
         int stbno = (cpage - 1) * 25;*/
 
-        return bddao.selectBoard(cpage);
+        return bddao.selectBoard(cpage - 1);
     }
 
     @Override
