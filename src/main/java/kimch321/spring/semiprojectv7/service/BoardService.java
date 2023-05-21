@@ -8,7 +8,7 @@ public interface BoardService {
 
      List<Board> readBoard(int cpage);
      List<Board> readBoard(int cpage, String ftype, String fkey);
-     Board readOneBoard(String bno);
+     Board readOneBoard(int bno);
      int countBoard();
      int countBoard(String ftype, String fkey);
      public boolean newBoard(Board bd);

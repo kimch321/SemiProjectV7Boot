@@ -17,14 +17,14 @@ import javax.persistence.*;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String bno;
+    private Long bno;
     private String title;
     private String userid;
 
     @Column(insertable = false, updatable = false)
-    private String thumbs;
+    private Integer thumbs;
     @Column(insertable = false, updatable = false)
-    private String views;
+    private Integer views;
 
     private String content;
 

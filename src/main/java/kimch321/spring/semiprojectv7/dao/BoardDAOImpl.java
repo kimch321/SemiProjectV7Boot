@@ -1,6 +1,8 @@
 package kimch321.spring.semiprojectv7.dao;
 
 import kimch321.spring.semiprojectv7.model.Board;
+import kimch321.spring.semiprojectv7.repository.BoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,9 +10,13 @@ import java.util.Map;
 
 @Repository("bddao")
 public class BoardDAOImpl implements BoardDAO{
+
+    @Autowired
+    BoardRepository boardRepository;
+
     @Override
     public List<Board> selectBoard(int strbno) {
-        return null;
+        return boardRepository.findAll();
     }
 
     @Override
@@ -19,8 +25,8 @@ public class BoardDAOImpl implements BoardDAO{
     }
 
     @Override
-    public Board selectOneBoard(String bno) {
-        return null;
+    public Board selectOneBoard(int bno) {
+        return boardRepository.findById((long) bno).get();
     }
 
     @Override
@@ -35,6 +41,6 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public int insertBoard(Board bd) {
-        return 0;
+        return Math.toIntExact(boardRepository.save(bd).getBno());
     }
 }

@@ -35,10 +35,6 @@ public class BoardServiceImpl implements BoardService{
         return bddao.selectBoard(params);
     }
 
-    public Board readOneBoard(String bno) {
-        return bddao.selectOneBoard(bno);
-    }
-
     @Override
     public int countBoard() {
         return bddao.countBoard();
@@ -61,5 +57,10 @@ public class BoardServiceImpl implements BoardService{
         if(bddao.insertBoard(bd) > 0) result = true;
 
         return result;
+    }
+
+    @Override
+    public Board readOneBoard(int bno) {
+        return bddao.selectOneBoard(bno);
     }
 }
