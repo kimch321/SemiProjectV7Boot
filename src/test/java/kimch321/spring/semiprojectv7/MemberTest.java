@@ -59,6 +59,6 @@ public class MemberTest {
         m.setUserid("abc123");
         m.setPasswd("abc123");
 
-        assertNotNull(memberRepository.findByUseridAndPasswd(m.getUserid(),m.getPasswd()));
+        assertNotNull(memberRepository.countByUseridAndPasswd(m.getUserid(),m.getPasswd()));
     }
 }

@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface MemberRepository
         extends JpaRepository<Member, Long> {
+    // 로그인 처리 1
+    //Member findByUseridAndPasswd(String userid, String passwd);
 
-    Member findByUseridAndPasswd(String userid, String passwd);
+    // 로그인 처리 2
+    int countByUseridAndPasswd(String userid, String passwd);
 }
