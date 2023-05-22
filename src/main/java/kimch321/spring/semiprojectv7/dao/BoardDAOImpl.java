@@ -25,6 +25,7 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public List<Board> selectBoard(Map<String, Object> params) {
+
         return null;
     }
 
@@ -36,7 +37,9 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public int countBoard() {
-        return 0;
+        // select ceil(count(bno)/25) from board;
+        int allCnt = boardRepository.countBoardBy();
+        return (int) Math.ceil(allCnt / 25);
     }
 
     @Override
