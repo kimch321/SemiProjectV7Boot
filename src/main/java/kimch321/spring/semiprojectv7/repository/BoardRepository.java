@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
-
+import org.springframework.data.domain.Pageable;
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface BoardRepository extends PagingAndSortingRepository<Board, Long> {
     // JpaRepository 에서는 DML은 지원 X
@@ -20,5 +21,14 @@ public interface BoardRepository extends PagingAndSortingRepository<Board, Long>
 
     // @Query("select ceil(count(bno)/25) from Board")
     int countBoardBy();
+
+    // 제목으로 검색
+    List<Board> findByTitle(Pageable paging, String fkey);
+    // 제목 + 본문으로 검색
+    List<Board> findByTitleOrContent(Pageable paging, String fkey1, String fkey2);
+    // 작성자로 검색
+    List<Board> findByUserid(Pageable paging, String fkey);
+    // 본문으로 검색
+    List<Board> findByContent(Pageable paging, String fkey);
 
 }
