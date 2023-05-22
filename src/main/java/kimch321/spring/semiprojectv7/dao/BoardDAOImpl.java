@@ -36,16 +36,16 @@ public class BoardDAOImpl implements BoardDAO{
 
         switch(ftype) {
             case "title": // 제목으로 검색
-                result = boardRepository.findByTitle(paging, fkey);
+                result = boardRepository.findByTitleContaining(paging, fkey);
                 break;
             case "titcont": // 제목 + 본문으로 검색
-                result = boardRepository.findByTitleOrContent(paging, fkey, fkey);
+                result = boardRepository.findByTitleContainingOrContentContaining(paging, fkey,fkey);
                 break;
             case "userid": // 작성자로 검색
                 result = boardRepository.findByUserid(paging, fkey);
                 break;
             case "content": // 본문으로 검색
-                result = boardRepository.findByContent(paging, fkey);
+                result = boardRepository.findByContentContaining(paging, fkey);
                 break;
         }
 

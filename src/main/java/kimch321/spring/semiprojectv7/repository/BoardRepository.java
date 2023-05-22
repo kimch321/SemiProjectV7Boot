@@ -23,12 +23,12 @@ public interface BoardRepository extends PagingAndSortingRepository<Board, Long>
     int countBoardBy();
 
     // 제목으로 검색
-    List<Board> findByTitle(Pageable paging, String fkey);
+    List<Board> findByTitleContaining(Pageable paging, String fkey);
     // 제목 + 본문으로 검색
-    List<Board> findByTitleOrContent(Pageable paging, String fkey1, String fkey2);
+    List<Board> findByTitleContainingOrContentContaining(Pageable paging, String fkey1, String fkey2);
     // 작성자로 검색
     List<Board> findByUserid(Pageable paging, String fkey);
     // 본문으로 검색
-    List<Board> findByContent(Pageable paging, String fkey);
+    List<Board> findByContentContaining(Pageable paging, String fkey);
 
 }
