@@ -31,12 +31,9 @@ public interface BoardRepository extends PagingAndSortingRepository<Board, Long>
     // 본문으로 검색
     List<Board> findByContentContains(Pageable paging, String fkey);
 
-    int findByTitleContains(String fkey);
-    // 제목 + 본문으로 검색
-    int findByTitleContainsOrContentContains(String fkey1, String fkey2);
-    // 작성자로 검색
-    int findByUserid(String fkey);
-    // 본문으로 검색
-    int findByContentContains(String fkey);
+    int countByTitleContains(String fkey);
+    int countByTitleContainsOrContentContains(String fkey1, String fkey2);
+    int countByUserid(String fkey);
+    int countByContentContains(String fkey);
 
 }
