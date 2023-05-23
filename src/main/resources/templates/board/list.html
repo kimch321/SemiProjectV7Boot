@@ -5,6 +5,12 @@
       layout:decorate="~{layout/template}">
     <th:block layout:fragment="content">
 
+        <th:block th:if="${cpg > cntpg}">
+            <script th:inline="javascript">
+                location.href="/board/list?cpg=" + [[${cntpg}]];
+            </script>
+        </th:block>
+
     <div id="main" th:with="pglink=${(#strings.isEmpty(param.fkey)) ? '/borad/find?cpg=' : '/board/find?ftype=' + param.ftype + '&fkey=' + param.fkey + '&cpg='}">
         <div class="mt-5">
             <i class="fa-solid fa-pen-to-square fa-2xl"> 게시판 </i>
@@ -104,6 +110,7 @@
                             </th:block>
                         </ul>
                     </nav>
+                    <th:block th:text="|${pglink} / ${cntpg}|"></th:block>
                 </div>
             </div>
         </th:block>
