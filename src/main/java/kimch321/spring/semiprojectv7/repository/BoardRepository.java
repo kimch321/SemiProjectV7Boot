@@ -1,6 +1,7 @@
 package kimch321.spring.semiprojectv7.repository;
 
 import kimch321.spring.semiprojectv7.model.Board;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -23,13 +24,13 @@ public interface BoardRepository extends PagingAndSortingRepository<Board, Long>
     // int countBoardBy();
 
     // 제목으로 검색
-    List<Board> findByTitleContains(Pageable paging, String fkey);
+    Page<Board> findByTitleContains(Pageable paging, String fkey);
     // 제목 + 본문으로 검색
-    List<Board> findByTitleContainsOrContentContains(Pageable paging, String fkey1, String fkey2);
+    Page<Board> findByTitleContainsOrContentContains(Pageable paging, String fkey1, String fkey2);
     // 작성자로 검색
-    List<Board> findByUserid(Pageable paging, String fkey);
+    Page<Board> findByUserid(Pageable paging, String fkey);
     // 본문으로 검색
-    List<Board> findByContentContains(Pageable paging, String fkey);
+    Page<Board> findByContentContains(Pageable paging, String fkey);
 
     /*int countByTitleContains(String fkey);
     int countByTitleContainsOrContentContains(String fkey1, String fkey2);
