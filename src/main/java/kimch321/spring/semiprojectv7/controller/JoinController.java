@@ -52,23 +52,26 @@ public class JoinController {
         return viewPage;
     }
 
-    @PostMapping("/joinme")
-    public ModelAndView joinme(Member mb) {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("join/joinme");
-        mv.addObject("mb",mb);
+    @GetMapping("/joinme")
+    public String joinme(Model m) {
 
-        return mv;
+        m.addAttribute("member", new Member());
+
+        return "join/joinme";
     }
 
-    @PostMapping("/joinok")
-    public String joinok(Member mb, String grecaptcha) {
-        String view = "error";
+    @PostMapping("/joinme")
+    public String joinmeok(@Valid Member member,
+                           BindingResult br, HttpSession sess) {
+        String viewPage = "redirect:/join/joinok";
 
-        if(jnsrv.newMember(mb))
-            view = "join/joinok";
+        if (br.hasErrors()) viewPage = "join/joinme";
+        else {
+            jnsrv.newMember(member);
+            sess.invalidate();
+        }
 
-        return view;
+        return viewPage;
     }
 
     @GetMapping("/joinok")
