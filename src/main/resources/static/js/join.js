@@ -27,7 +27,7 @@ chk2btn?.addEventListener('click',() => {
     else if(!chkfrm2.chkjumin.checked) alert("주민번호 이용확인에 동의해주세요");
     else {
         chkfrm2.method = 'post';
-        chkfrm2.action = '/join/joinme';
+        chkfrm2.action = '/join/checkme';
         chkfrm2.submit();
     }
 });
