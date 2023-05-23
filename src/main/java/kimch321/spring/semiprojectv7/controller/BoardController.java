@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -18,15 +20,19 @@ public class BoardController {
     BoardService bdsrv;
 
     @GetMapping("/list")
-    public ModelAndView list(@RequestParam int cpg) {
+    public ModelAndView list(Integer cpg) {
         ModelAndView mv = new ModelAndView();
+        mv.setViewName("board/list");
+        if (cpg == null || cpg == 0) cpg = 1;
 
-        mv.addObject("bdlist", bdsrv.readBoard(cpg));
+        Map<String, Object> bds = bdsrv.readBoard(cpg);
+
+        mv.addObject("bdlist", bds.get("bdlist"));
         mv.addObject("cpg", cpg);
         mv.addObject("stpg",((cpg-1)/10)*10 + 1);
-        mv.addObject("cntpg",bdsrv.countBoard());
+        mv.addObject("cntpg",bds.get("cntpg"));
 
-        mv.setViewName("board/list");
+
         return mv;
     }
 

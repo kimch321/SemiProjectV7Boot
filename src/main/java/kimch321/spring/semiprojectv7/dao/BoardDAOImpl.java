@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +19,14 @@ public class BoardDAOImpl implements BoardDAO{
     BoardRepository boardRepository;
 
     @Override
-    public List<Board> selectBoard(int cpage) {
-        Pageable paging = // PageRequest.of(cpage, 25, Sort.by("bno").descending());
-        PageRequest.of(cpage, 25, Sort.Direction.DESC, "bno");
+    public Map<String, Object> selectBoard(int cpage) {
+        Pageable paging = PageRequest.of(cpage, 25, Sort.Direction.DESC, "bno");
 
-        return boardRepository.findAll(paging).getContent();
+        Map<String, Object> bds = new HashMap<>();
+        bds.put("bdlist", boardRepository.findAll(paging).getContent());
+        bds.put("cntpg", boardRepository.findAll(paging).getTotalPages());
+
+        return bds;
     }
 
     @Override
@@ -65,12 +69,6 @@ public class BoardDAOImpl implements BoardDAO{
         return boardRepository.findById((long) bno).get();
     }
 
-    @Override
-    public int countBoard() {
-        // select ceil(count(bno)/25) from board;
-        int allCnt = boardRepository.countBoardBy();
-        return (int) Math.ceil(allCnt / 25);
-    }
 
     @Override
     public int countBoard(Map<String, Object> params) {

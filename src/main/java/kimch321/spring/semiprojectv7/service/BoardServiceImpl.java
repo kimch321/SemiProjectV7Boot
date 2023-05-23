@@ -16,7 +16,7 @@ public class BoardServiceImpl implements BoardService{
     BoardDAO bddao;
 
     @Override
-    public List<Board> readBoard(int cpage) {
+    public Map<String, Object> readBoard(int cpage) {
         /*// 1 페이지라면 limit 0,25 2 페이지라면 limit 25,25...
         int stbno = (cpage - 1) * 25;*/
 
@@ -34,11 +34,6 @@ public class BoardServiceImpl implements BoardService{
         params.put("fkey", fkey);
 
         return bddao.selectBoard(params);
-    }
-
-    @Override
-    public int countBoard() {
-        return bddao.countBoard();
     }
 
     @Override
