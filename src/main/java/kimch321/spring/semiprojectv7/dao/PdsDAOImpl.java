@@ -1,6 +1,7 @@
 package kimch321.spring.semiprojectv7.dao;
 
 import kimch321.spring.semiprojectv7.model.Pds;
+import kimch321.spring.semiprojectv7.repository.PdsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
