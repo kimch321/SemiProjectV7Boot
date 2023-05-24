@@ -1,6 +1,7 @@
 package kimch321.spring.semiprojectv7.controller;
 
 import kimch321.spring.semiprojectv7.model.Pds;
+import kimch321.spring.semiprojectv7.service.PdsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
