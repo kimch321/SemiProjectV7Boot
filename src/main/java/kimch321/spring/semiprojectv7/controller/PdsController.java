@@ -93,6 +93,9 @@ public class PdsController {
         // 이 리소스 객체를 클라이언트에게 전달하여 파일을 다운로드할 수 있습니다.
         UrlResource resource = pdssrv.getResource(fname, uuid);
 
+        //다운로드 수 증가
+        pdssrv.downfile(pno);
+
         return ResponseEntity.ok().headers(header).body(resource);
     }
 
