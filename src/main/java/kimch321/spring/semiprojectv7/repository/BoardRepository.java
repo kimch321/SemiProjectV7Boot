@@ -2,6 +2,7 @@ package kimch321.spring.semiprojectv7.repository;
 
 import kimch321.spring.semiprojectv7.model.Board;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

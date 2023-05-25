@@ -20,12 +20,12 @@ public class BoardServiceImpl implements BoardService{
         /*// 1 페이지라면 limit 0,25 2 페이지라면 limit 25,25...
         int stbno = (cpage - 1) * 25;*/
 
-        return bddao.selectBoard(cpage - 1);
+        return bddao.selectBoard(cpage);
     }
 
     @Override
     public Map<String, Object> readBoard(int cpage, String ftype, String fkey) {
-        int stbno = (cpage - 1);
+        int stbno = (cpage);
 
         // 처리시 사용할 데이터들을 해쉬맵에 담아서 보냄
         Map<String, Object> params = new HashMap<>();
