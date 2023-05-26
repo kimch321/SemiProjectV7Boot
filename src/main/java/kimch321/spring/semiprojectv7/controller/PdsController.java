@@ -1,6 +1,7 @@
 package kimch321.spring.semiprojectv7.controller;
 
 import kimch321.spring.semiprojectv7.model.Pds;
+import kimch321.spring.semiprojectv7.model.PdsReply;
 import kimch321.spring.semiprojectv7.service.PdsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -98,6 +99,16 @@ public class PdsController {
         pdssrv.downfile(pno);
 
         return ResponseEntity.ok().headers(header).body(resource);
+    }
+
+    @PostMapping("/replyok")
+    public String replyok(PdsReply reply) {
+        String viewPage = "error";
+
+        if(pdssrv.newReply(reply))
+            viewPage = "redirect:/pds/view?pno=" + reply.getPno();
+
+        return viewPage;
     }
 
 

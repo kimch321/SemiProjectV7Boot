@@ -22,4 +22,6 @@ public interface PdsDAO {
     void countDownload(int pno);
 
     List<PdsReply> selectPdsReply(int pno);
+
+    int insertReply(PdsReply reply);
 }

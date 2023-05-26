@@ -28,4 +28,6 @@ public interface PdsService {
     void downfile(int pno);
 
     List<PdsReply> readPdsReply(int pno);
+
+    boolean newReply(PdsReply reply);
 }
