@@ -115,8 +115,11 @@
             </div>
 
             <div class="col-2">
-              <button type="button" class="btn btn-light "><i class="fa fa-commenting"></i>댓글쓰기</button>
+              <button type="button" class="btn btn-light " id="rpnewbtn"><i class="fa fa-commenting"></i>댓글쓰기</button>
             </div>
+
+            <input type="hidden" name="userid" id="userid" th:value="${session.UID}" />
+            <input type="hidden" name="pno" id="pno" th:value="${pds.pno}" />
 
           </div>
         </form>
