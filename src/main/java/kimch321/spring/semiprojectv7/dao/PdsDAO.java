@@ -3,7 +3,9 @@ package kimch321.spring.semiprojectv7.dao;
 
 import kimch321.spring.semiprojectv7.model.Pds;
 import kimch321.spring.semiprojectv7.model.PdsAttach;
+import kimch321.spring.semiprojectv7.model.PdsReply;
 
+import java.util.List;
 import java.util.Map;
 
 public interface PdsDAO {
@@ -18,4 +20,6 @@ public interface PdsDAO {
     PdsAttach selectOnePdsAttach(int pno);
 
     void countDownload(int pno);
+
+    List<PdsReply> selectPdsReply(int pno);
 }

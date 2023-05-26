@@ -2,6 +2,8 @@ package kimch321.spring.semiprojectv7.dao;
 
 import kimch321.spring.semiprojectv7.model.Pds;
 import kimch321.spring.semiprojectv7.model.PdsAttach;
+import kimch321.spring.semiprojectv7.model.PdsReply;
+import kimch321.spring.semiprojectv7.repository.PdsReplyRepository;
 import kimch321.spring.semiprojectv7.repository.PdsRepository;
 import kimch321.spring.semiprojectv7.repository.PdsaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository("pdsdao")
@@ -20,6 +23,8 @@ public class PdsDAOImpl implements PdsDAO {
     PdsRepository pdsRepository;
     @Autowired
     PdsaRepository pdsaRepository;
+    @Autowired
+    PdsReplyRepository pdsReplyRepository;
 
     @Override
     public int insertPds(Pds pds) {
@@ -60,5 +65,10 @@ public class PdsDAOImpl implements PdsDAO {
     @Override
     public void countDownload(int pno) {
         pdsaRepository.countDownByPno(pno);
+    }
+
+    @Override
+    public List<PdsReply> selectPdsReply(int pno) {
+        return pdsReplyRepository.findByPnoOrderByRefnoAscRegdateAsc(pno);
     }
 }

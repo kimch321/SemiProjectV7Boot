@@ -25,8 +25,8 @@ public class PdsReply {
     private String reply;
     @NotBlank(message = "작성자는 필수항목입니다")
     private String userid;
-    private String pno;
-    private String refno;
+    private int pno;
+    private int refno;
     @CreatedDate
     @Column(insertable = false, updatable = false)
     private LocalDateTime regdate;

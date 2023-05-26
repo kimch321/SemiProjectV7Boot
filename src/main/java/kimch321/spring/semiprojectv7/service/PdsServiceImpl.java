@@ -3,6 +3,7 @@ package kimch321.spring.semiprojectv7.service;
 import kimch321.spring.semiprojectv7.dao.PdsDAO;
 import kimch321.spring.semiprojectv7.model.Pds;
 import kimch321.spring.semiprojectv7.model.PdsAttach;
+import kimch321.spring.semiprojectv7.model.PdsReply;
 import kimch321.spring.semiprojectv7.utils.PdsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service("pdssrv")
@@ -78,4 +80,8 @@ public class PdsServiceImpl implements PdsService {
         pdsdao.countDownload(pno);
     }
 
+    @Override
+    public List<PdsReply> readPdsReply(int pno) {
+        return pdsdao.selectPdsReply(pno);
+    }
 }
