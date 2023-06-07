@@ -2,12 +2,51 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/template}">
-<th:block layout:fragment="content">
 
+<th:block layout:fragment="content">
   <div id="main">
     <div class="mt-5">
       <i class="fa-solid fa-image fa-2xl"> 겔러리 </i>
       <hr>
+    </div>
+
+    <div class="row mt-5">
+      <div class="row col-6">
+        <!--<th:block th:if="${not #strings.isEmpty(session.UID)}">-->
+        <div class="col-3">
+          <select class="form-select ms-4" id="findtype">
+            <option value="title">제목</option>
+            <option value="titcont">제목+내용</option>
+            <option value="content">내용</option>
+            <option value="userid">작성자</option>
+          </select></div>
+        <div class="col-4">
+          <input type="text" class="form-control col-2 ms-2" id="findkey"
+                 th:value="${param.fkey}"></div>
+        <div class="col-3">
+          <button type="button" class="btn btn-light ms-2" id="findbtn">
+            <i class="fa-solid fa-magnifying-glass"> </i> 검색하기</button></div>
+        <!--</th:block>-->
+        &nbsp;
+      </div>
+      <div class="col-6 text-end">
+        <th:block th:if="${session.UID ne null}">
+          <button type="button" class="btn btn-light" id="newbtn">
+            <i class="fa fa-plus-circle"> </i> 새글쓰기</button>
+        </th:block>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div th:each="gal : ${#numbers.sequence(1,24)}"
+              class="card col-3 m-3" style="width: 18rem;">
+        <img src="http://localhost/cdn/cat.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">겔러리 제목</h5>
+          <p class="card-text d-flex justify-content-between"><span>작성자</span><span>23/06/07</span></p>
+          <p class="card-text"><span><i class="fa-regular fa-thumbs-up">123</i> <i class="fa-regular fa-eye">456</i></span></p>
+        </div>
+      </div>
     </div>
 
 
